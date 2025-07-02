@@ -15,13 +15,19 @@ using UnityEditor;
 public class MenuUIHandler : MonoBehaviour
 {
     public static string  currentName;
+    public Text bestScoreText;
+    void Start()
+    {
+        MainManager.Instance.LoadMaxScore();
+        bestScoreText.text = $"Current best score: {MainManager.Instance.playerName}: {MainManager.Instance.maxScore}";
+    }
     public void SaveName(string playerName)
     {
         currentName = playerName;
     }
     public void StartNew()
     {
-        MainManager.Instance.LoadMaxScore();
+        
         SceneManager.LoadScene(1);
     }
     public void Exit()

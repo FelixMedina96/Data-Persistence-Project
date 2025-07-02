@@ -9,7 +9,7 @@ public class MainManager : MonoBehaviour
 public static MainManager Instance;
     public String playerName;
     public int maxScore;
-    private void Awake()
+    public void Awake()
     {
         if (Instance != null)
         {
