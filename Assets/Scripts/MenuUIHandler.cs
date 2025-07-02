@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System;
+using UnityEngine.UI;
+
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -11,9 +13,11 @@ using UnityEditor;
 public class MenuUIHandler : MonoBehaviour
 {
 
-    public String playerName;
+    public InputField inputFieldCo;
     public void StartNew()
     {
+        inputFieldCo = gameObject.GetComponent<InputField>();
+        MainManager.Instance.playerName = inputFieldCo.text;
         SceneManager.LoadScene(1);
     }
     public void Exit()

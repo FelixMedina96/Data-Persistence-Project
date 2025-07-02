@@ -23,13 +23,11 @@ public static MainManager Instance;
     [System.Serializable]
     class SaveData
     {
-        public String playerName;
         public int maxScore;
     }
     public void SaveMaxScore()
     {
         SaveData data = new SaveData();
-        data.playerName = playerName;
         data.maxScore = maxScore;
 
         string json = JsonUtility.ToJson(data);
@@ -44,7 +42,6 @@ public static MainManager Instance;
             string json = File.ReadAllText(path);
             SaveData data = JsonUtility.FromJson<SaveData>(json);
 
-            playerName = data.playerName;
             maxScore = data.maxScore;
         }
     }
