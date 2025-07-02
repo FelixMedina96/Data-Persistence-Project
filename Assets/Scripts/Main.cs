@@ -11,9 +11,8 @@ public class Main : MonoBehaviour
     public Rigidbody Ball;
 
     public Text ScoreText;
-    public Text maxScore;
+    //public Text maxScore;
     public GameObject GameOverText;
-    public GameObject menuHandler;
     private bool m_Started = false;
     private int m_Points;
     
@@ -37,7 +36,7 @@ public class Main : MonoBehaviour
                 brick.onDestroyed.AddListener(AddPoint);
             }
         }
-        maxScore.text = $"Max score: {MainManager.Instance.maxScore}";
+        //maxScore.text = $"Max score: {MainManager.Instance.maxScore}";
     }
 
     private void Update()

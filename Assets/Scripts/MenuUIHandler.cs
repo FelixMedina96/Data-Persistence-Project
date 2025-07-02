@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System;
 using UnityEngine.UI;
+using TMPro;
+
 
 
 #if UNITY_EDITOR
@@ -13,11 +15,13 @@ using UnityEditor;
 public class MenuUIHandler : MonoBehaviour
 {
 
-    public InputField inputFieldCo;
+    public void SaveName(string playerName)
+    {
+        MainManager.Instance.playerName = playerName;
+    }
     public void StartNew()
     {
-        inputFieldCo = gameObject.GetComponent<InputField>();
-        MainManager.Instance.playerName = inputFieldCo.text;
+
         SceneManager.LoadScene(1);
     }
     public void Exit()
