@@ -18,23 +18,25 @@ public static MainManager Instance;
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
-        LoadColor();
+
     }
     [System.Serializable]
     class SaveData
     {
         public int maxScore;
+        public string playerName;
     }
     public void SaveMaxScore()
     {
         SaveData data = new SaveData();
         data.maxScore = maxScore;
+        data.playerName = playerName;
 
         string json = JsonUtility.ToJson(data);
 
         File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
     }
-    public void LoadColor()
+    public void LoadMaxScore()
     {
         string path = Application.persistentDataPath + "/savefile.json";
         if (File.Exists(path))
@@ -43,6 +45,7 @@ public static MainManager Instance;
             SaveData data = JsonUtility.FromJson<SaveData>(json);
 
             maxScore = data.maxScore;
+            playerName = data.playerName;
         }
     }
 }

@@ -14,14 +14,14 @@ using UnityEditor;
 
 public class MenuUIHandler : MonoBehaviour
 {
-
+    public static string  currentName;
     public void SaveName(string playerName)
     {
-        MainManager.Instance.playerName = playerName;
+        currentName = playerName;
     }
     public void StartNew()
     {
-
+        MainManager.Instance.LoadMaxScore();
         SceneManager.LoadScene(1);
     }
     public void Exit()

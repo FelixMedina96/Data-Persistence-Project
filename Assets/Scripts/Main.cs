@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -11,10 +12,13 @@ public class Main : MonoBehaviour
     public Rigidbody Ball;
 
     public Text ScoreText;
+    public Text maxScore;
     //public Text maxScore;
     public GameObject GameOverText;
     private bool m_Started = false;
     private int m_Points;
+    private string playerName;
+
     
     private bool m_GameOver = false;
 
@@ -26,6 +30,7 @@ public class Main : MonoBehaviour
         int perLine = Mathf.FloorToInt(4.0f / step);
 
         int[] pointCountArray = new[] { 1, 1, 2, 2, 5, 5 };
+        playerName = MenuUIHandler.currentName;
         for (int i = 0; i < LineCount; ++i)
         {
             for (int x = 0; x < perLine; ++x)
@@ -36,7 +41,9 @@ public class Main : MonoBehaviour
                 brick.onDestroyed.AddListener(AddPoint);
             }
         }
-        //maxScore.text = $"Max score: {MainManager.Instance.maxScore}";
+        maxScore.text = $"Max score: {MainManager.Instance.playerName}: {MainManager.Instance.maxScore}";
+        
+        
     }
 
     private void Update()
@@ -66,11 +73,17 @@ public class Main : MonoBehaviour
     void AddPoint(int point)
     {
         m_Points += point;
-        ScoreText.text = $"{MainManager.Instance.playerName} score : {m_Points}";
+        ScoreText.text = $"{playerName} score : {m_Points}";
     }
 
     public void GameOver()
     {
+        if (MainManager.Instance.maxScore < m_Points)
+        {
+            MainManager.Instance.maxScore = m_Points;
+            MainManager.Instance.playerName = playerName;
+            MainManager.Instance.SaveMaxScore();
+        }
         m_GameOver = true;
         GameOverText.SetActive(true);
     }
