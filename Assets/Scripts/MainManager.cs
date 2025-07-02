@@ -26,7 +26,7 @@ public static MainManager Instance;
         public String playerName;
         public int maxScore;
     }
-    public void SaveColor()
+    public void SaveMaxScore()
     {
         SaveData data = new SaveData();
         data.playerName = playerName;
